@@ -1,57 +1,159 @@
-Запуск Python
-Команда	Назначение
-python	Запустить интерактивный Python.
-python --version	Показать установленную версию Python.
-python main.py	Запустить файл Python.
-py	Запустить Python через Python Launcher (Windows).
-py -3	Запустить последнюю установленную версию Python 3.
+# Python — шпаргалка
 
-Виртуальное окружение (venv)
-Команда	Назначение
-python -m venv .venv	Создать виртуальное окружение.
-.venv\Scripts\Activate.ps1	Активировать venv (PowerShell).
-.venv\Scripts\activate.bat	Активировать venv (CMD).
-deactivate	Деактивировать виртуальное окружение.
+## Виртуальное окружение
 
-pip
-Команда	Назначение
-pip --version	Показать версию pip.
-pip list	Показать установленные пакеты.
-pip install ИМЯ_ПАКЕТА	Установить пакет.
-pip uninstall ИМЯ_ПАКЕТА	Удалить пакет.
-pip install --upgrade ИМЯ_ПАКЕТА	Обновить пакет.
-pip install --upgrade pip	Обновить pip.
-pip freeze	Показать список пакетов для requirements.txt.
-pip freeze > requirements.txt	Создать requirements.txt.
-pip install -r requirements.txt	Установить зависимости из requirements.txt.
+```powershell
+python -m venv .venv
+```
+Создать виртуальное окружение.
 
-Полезные модули
-Команда	Назначение
-python -m pip	Запустить pip через Python.
-python -m venv	Запустить модуль создания venv.
-python -m http.server	Запустить простой HTTP-сервер.
-python -m json.tool	Проверить и красиво вывести JSON.
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+Активировать виртуальное окружение.
 
-Проверка окружения
-Команда	Назначение
-where python	Показать путь к Python (Windows).
-where pip	Показать путь к pip.
-python -c "import sys; print(sys.executable)"	Показать используемый Python.
-python -c "import sys; print(sys.version)"	Показать версию Python.
-python -c "import os; print(os.getcwd())"	Показать текущую папку.
+После активации приглашение должно выглядеть так:
 
-Работа с пакетами
-Команда	Назначение
-pip show ИМЯ_ПАКЕТА	Показать информацию о пакете.
-pip cache dir	Показать папку кэша pip.
-pip cache purge	Очистить кэш pip.
+```text
+(.venv) PS F:\Projects\МойПроект>
+```
 
-Часто используемые команды
-Команда	Назначение
-python main.py	Запустить программу.
-python --version	Проверить версию Python.
-python -m venv .venv	Создать виртуальное окружение.
-.venv\Scripts\Activate.ps1	Активировать окружение.
-pip install -r requirements.txt	Установить все зависимости проекта.
-pip freeze > requirements.txt	Обновить список зависимостей.
-deactivate	Выйти из виртуального окружения.
+---
+
+## Проверка Python
+
+```powershell
+python --version
+```
+Показать установленную версию Python.
+
+```powershell
+where python
+```
+Показать путь к используемому Python.
+
+---
+
+## Работа с библиотеками
+
+```powershell
+pip list
+```
+Показать все установленные библиотеки.
+
+```powershell
+pip show ИМЯ_ПАКЕТА
+```
+Показать информацию о библиотеке.
+
+```powershell
+pip install ИМЯ_ПАКЕТА
+```
+Установить библиотеку.
+
+```powershell
+pip install -r requirements.txt
+```
+Установить все библиотеки из файла `requirements.txt`.
+
+```powershell
+pip install --upgrade -r requirements.txt
+```
+Обновить библиотеки из `requirements.txt`.
+
+```powershell
+pip list --outdated
+```
+Показать библиотеки, для которых доступны обновления.
+
+---
+
+## Сохранение зависимостей
+
+```powershell
+pip freeze > requirements.txt
+```
+Сохранить список установленных библиотек в `requirements.txt`.
+
+> Используйте **только после** установки или обновления библиотек.
+
+---
+
+## Пересоздание виртуального окружения
+
+Если возникают ошибки с зависимостями:
+
+1. Удалите папку `.venv`.
+2. Создайте новое окружение:
+
+```powershell
+python -m venv .venv
+```
+
+3. Активируйте окружение:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+4. Установите зависимости:
+
+```powershell
+pip install -r requirements.txt
+```
+
+---
+
+## Типичный порядок работы
+
+### Новый проект
+
+```powershell
+python -m venv .venv
+```
+
+↓
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+↓
+
+```powershell
+pip install ИМЯ_ПАКЕТА
+```
+
+↓
+
+```powershell
+pip freeze > requirements.txt
+```
+
+---
+
+### Скачали готовый проект
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+↓
+
+```powershell
+pip install -r requirements.txt
+```
+
+---
+
+### Добавили новую библиотеку
+
+```powershell
+pip install ИМЯ_ПАКЕТА
+```
+
+↓
+
+```powershell
+pip freeze > requirements.txt
+```
