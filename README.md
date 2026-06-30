@@ -8,5 +8,8 @@
 
 This is my first commit
 # Мой первый проект
-“init structure”
-fix payment button" (исправлена кнопка оплаты)
+git status
+git add .
+git commit -m "Описание"
+git push
+git log --oneline --graph --decorate --all
